@@ -390,3 +390,14 @@ footer .pata{display:inline-block;animation:balancar 2.4s ease-in-out infinite}
   .barra{gap:8px}
   .numeros{gap:20px}
 }
+
+/* mostrar/ocultar senha */
+.campo-senha{position:relative;display:block}
+.campo-senha input{padding-right:48px!important}
+.olho{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:36px;height:36px;border:0;border-radius:10px;background:transparent;
+  color:var(--suave);cursor:pointer;display:grid;place-items:center;transition:background .2s,color .2s}
+.olho:hover{background:var(--superficie-2);color:var(--titulo)}
+.olho:focus-visible{outline:2px solid var(--primario-hover);outline-offset:1px}
+.olho svg{width:20px;height:20px}
+.olho.piscou svg{animation:piscar-olho .35s var(--mola)}
+@keyframes piscar-olho{40%{transform:scaleY(.15)}}

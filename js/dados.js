@@ -55,7 +55,10 @@ function criarApi(){
     },
     async cadastrar({ email, senha, nome, cidade }){
       const r = ok(await sb.auth.signUp({ email, password:senha, options:{ data:{ nome, cidade }, emailRedirectTo:urlDoSite() } }));
-      return { confirmarEmail: !r.session };
+      if (r.session) return { confirmarEmail:false };
+      // sem confirmação por e-mail no projeto: entra direto
+      const e = await sb.auth.signInWithPassword({ email, password:senha });
+      return { confirmarEmail: !!e.error };
     },
     async entrar(email, senha){ ok(await sb.auth.signInWithPassword({ email, password:senha })); },
     async sair(){ await sb.auth.signOut(); },

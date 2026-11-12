@@ -94,3 +94,38 @@ const Efeitos = (() => {
 
   return { revelar, confete, confeteNo, contar, trocarTema, patinhas, pilula, reduzido };
 })();
+
+/* =====================================================================
+   Botão 👁 para mostrar/ocultar a senha em todo campo de senha do site
+   (vale também para campos criados depois, como no modal de excluir conta)
+   ===================================================================== */
+(() => {
+  const OLHO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+  const OLHO_FECHADO = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"/><path d="M10.6 5.1A10.4 10.4 0 0 1 12 5c6.4 0 10 7 10 7a17.6 17.6 0 0 1-3.2 4.1M6.6 6.6C3.9 8.4 2 12 2 12s3.6 7 10 7a9.7 9.7 0 0 0 5.4-1.6"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></svg>';
+  function equipar(input){
+    if (input.dataset.olho) return;
+    input.dataset.olho = '1';
+    const caixa = document.createElement('span');
+    caixa.className = 'campo-senha';
+    input.parentNode.insertBefore(caixa, input);
+    caixa.appendChild(input);
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'olho'; b.innerHTML = OLHO;
+    b.setAttribute('aria-label', 'Mostrar senha'); b.title = 'Mostrar senha';
+    b.onclick = () => {
+      const mostrar = input.type === 'password';
+      input.type = mostrar ? 'text' : 'password';
+      b.innerHTML = mostrar ? OLHO_FECHADO : OLHO;
+      b.setAttribute('aria-label', mostrar ? 'Ocultar senha' : 'Mostrar senha'); b.title = b.getAttribute('aria-label');
+      b.classList.remove('piscou'); void b.offsetWidth; b.classList.add('piscou');
+      Som.tocar('pop');
+      input.focus({ preventScroll:true });
+      const fim = input.value.length; try { input.setSelectionRange(fim, fim); } catch {}
+    };
+    caixa.appendChild(b);
+  }
+  const varrer = raiz => raiz.querySelectorAll?.('input[type=password]:not([data-olho])').forEach(equipar);
+  new MutationObserver(ms => ms.forEach(m => m.addedNodes.forEach(n => n.nodeType === 1 && (n.matches?.('input[type=password]') ? equipar(n) : varrer(n)))))
+    .observe(document.body, { childList:true, subtree:true });
+  varrer(document);
+})();
