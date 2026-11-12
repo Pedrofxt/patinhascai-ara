@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Patinhas Caiçara</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+<div id="demo" hidden>🐾 <b>Modo demonstração</b> — os dados ficam só nesta aba. Configure o Supabase no código para ativar o banco real.</div>
+<header>
+  <div class="wrap topo">
+    <a class="logo" href="#inicio" aria-label="Patinhas Caiçara — início">
+      <svg viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="23" fill="#0b4f5c"/>
+        <path d="M4 32c5-3 9-3 14 0s9 3 14 0 9-3 12 0v6a22 22 0 0 1-40 0z" fill="#127a86"/>
+        <ellipse cx="24" cy="25" rx="6.5" ry="5.5" fill="#ef6f53"/>
+        <circle cx="15.5" cy="18" r="3" fill="#ef6f53"/><circle cx="21" cy="13.5" r="3" fill="#ef6f53"/>
+        <circle cx="27" cy="13.5" r="3" fill="#ef6f53"/><circle cx="32.5" cy="18" r="3" fill="#ef6f53"/>
+      </svg>
+      Patinhas Caiçara
+    </a>
+    <nav>
+      <a href="#inicio" data-nav="inicio"><span>🏠</span> <span class="txt">Adotar</span></a>
+      <a href="#anunciar" data-nav="anunciar"><span>➕</span> <span class="txt">Doar um animal</span></a>
+      <a href="#microchip" data-nav="microchip"><span>🔖</span> <span class="txt">Microchip</span></a>
+      <a href="#chat" data-nav="chat"><span>💬</span> <span class="txt">Conversas</span></a>
+      <a href="#entrar" id="btn-conta" class="btn btn-coral" style="margin-left:6px">Entrar</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app"><div class="carregando">Carregando…</div></main>
+
+<footer>
+  <div class="wrap">Patinhas Caiçara · adoção responsável no litoral do Paraná<br>
+  Antonina · Guaraqueçaba · Guaratuba · Matinhos · Morretes · Paranaguá · Pontal do Paraná</div>
+</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/config.js"></script>
+<script src="js/util.js"></script>
+<script src="js/dados.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
