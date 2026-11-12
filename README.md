@@ -22,15 +22,16 @@ Site de doação de animais para o litoral do Paraná (Antonina, Guaraqueçaba, 
 │   ├── 01_base.sql              perfis, anúncios, chat, fotos dos animais
 │   ├── 02_microchipagem.sql     microchips, histórico, consulta e transferência
 │   ├── 03_perfil.sql            campos do perfil, privacidade, fotos de perfil, excluir conta
-│   └── 04_ajustes_seguranca.sql bloqueia chamadas diretas às funções internas
+│   ├── 04_ajustes_seguranca.sql bloqueia chamadas diretas às funções internas
+│   └── 05_sem_verificacao_email.sql  cadastro sem confirmação por e-mail
 ```
 
 ## Supabase
-O site já está ligado ao projeto **patinhas-caicara** (região São Paulo), com os quatro SQLs aplicados. Para montar em outro projeto:
+O site já está ligado ao projeto **patinhas-caicara** (região São Paulo), com os cinco SQLs aplicados. Para montar em outro projeto:
 1. Crie um projeto em supabase.com.
-2. No **SQL Editor**, rode na ordem `01_base.sql`, `02_microchipagem.sql`, `03_perfil.sql` e `04_ajustes_seguranca.sql`.
+2. No **SQL Editor**, rode na ordem `01_base.sql`, `02_microchipagem.sql`, `03_perfil.sql`, `04_ajustes_seguranca.sql` e `05_sem_verificacao_email.sql`.
 3. Em **Project Settings → API**, copie a *Project URL* e a chave *anon/publishable* para `js/config.js`. Essa chave é pública por natureza; quem protege os dados são as regras de segurança (RLS) dos SQLs.
-4. Em **Authentication → URL Configuration**, coloque o endereço do site em *Site URL* e em *Redirect URLs*. Sem isso, os links de confirmação de e-mail e de recuperação de senha não voltam para o site.
+4. Em **Authentication → URL Configuration**, coloque o endereço do site em *Site URL* e em *Redirect URLs*. Sem isso, o link de recuperação de senha não volta para o site. (O cadastro não pede confirmação por e-mail: o `05_sem_verificacao_email.sql` já cria a conta confirmada.)
 5. Abra o site por um endereço `http(s)://` (GitHub Pages, Vercel, Netlify ou `npx serve`).
 
 Sem as chaves, o site mostra uma tela explicando esses passos.
@@ -40,7 +41,7 @@ Sem as chaves, o site mostra uma tela explicando esses passos.
 |---|---|
 | `#inicio` | Vitrine com busca por nome, filtros, contadores e "como funciona" |
 | `#animal-<id>` | Página do animal, doador e botão de conversa |
-| `#entrar` | Entrar, criar conta (com medidor de força da senha) e "esqueci minha senha" |
+| `#entrar` | Entrar, criar conta (entra direto, sem confirmar e-mail), mostrar/ocultar senha, medidor de força e "esqueci minha senha" |
 | `#nova-senha` | Definir nova senha pelo link do e-mail |
 | `#anunciar` | Anúncio com fotos (arrastar e soltar, até 5, reduzidas automaticamente) |
 | `#chat` | Conversas em tempo real; o doador conclui a adoção |
