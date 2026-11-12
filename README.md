@@ -22,7 +22,6 @@ Site de doação de animais para o litoral do Paraná (Antonina, Guaraqueçaba, 
 │   ├── 01_base.sql              perfis, anúncios, chat, fotos dos animais
 │   ├── 02_microchipagem.sql     microchips, histórico, consulta e transferência
 │   └── 03_perfil.sql            campos do perfil, privacidade, fotos de perfil, excluir conta
-└── .github/workflows/pages.yml  publica o site no GitHub Pages a cada push
 ```
 
 ## Como ligar ao Supabase
@@ -63,8 +62,8 @@ Sem as chaves, o site mostra uma tela explicando esses passos.
 - Animações: título que entra palavra por palavra, ondas do mar em movimento, patinhas subindo no topo, cards com inclinação 3D e brilho, carregamento com esqueleto, confete de patinhas e corações, troca de tema com círculo que se expande, bolhas de chat que "estouram", números contando.
 - Quem ativa "reduzir movimento" no sistema recebe a versão sem animações.
 
-## Publicação automática no GitHub Pages
-O workflow `.github/workflows/pages.yml` publica o site a cada push na `main`. Para ativar: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+## Publicação no GitHub Pages
+O GitHub Pages publica o site direto da branch `main`: cada push atualiza o site em poucos minutos.
 
 ## Testes
 Os três SQLs foram testados num Postgres local: telefone protegido, transferência de microchip só pela adoção e exclusão de conta em cascata. O site foi testado de ponta a ponta num navegador automatizado com um Supabase simulado: cadastro, perfil, foto, avatar, tema, senha, anúncio com fotos, chat, microchip, celular e exclusão de conta.
